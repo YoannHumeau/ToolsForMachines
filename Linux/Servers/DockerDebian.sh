@@ -9,7 +9,7 @@ check_access_is_root()
         fi
 }
 
-check_user_exists() # $1 must be $user
+check_user() # $1 must be $user
 {
         # Check user is given
         if [ -z "$1" ]; then
@@ -89,6 +89,6 @@ done
 
 # Run baby !
 check_access_is_root
-check_user_exists $user
+check_user $user
 if [ $install ]; then install_docker; fi;
 give_user_access_without_sudo
