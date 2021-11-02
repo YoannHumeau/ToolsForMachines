@@ -26,6 +26,11 @@ check_user_exists() # $1 must be $user
 
 install_docker()
 {
+    if command -v docker &> /dev/null; then
+        echo "ERROR : Docker is already installed"
+        exit 1
+    fi
+
     echo "Start install Docker"
 
     # Update and install tools we need
