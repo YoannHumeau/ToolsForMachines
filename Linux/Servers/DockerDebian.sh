@@ -55,8 +55,9 @@ give_user_access_without_sudo()
 
     # Make user access Docker without sudo
     usermod -aG docker $user
-    su - $user &
     echo "User \"$user\" is allowed to run docker without sudo"
+    su - $user -c exit
+    echo -e "\nTo take effect, exit this session and relog with the user \"$user\" and run the command : \"docker run hello-world\""
 }
 
 print_help()
@@ -86,4 +87,3 @@ check_access_is_root
 check_user_exists $user
 if [ $install ]; then install_docker; fi;
 give_user_access_without_sudo
-echo -e "\nyou can test your Docker install on user \"$user\" with the command : \"docker run hello-world\""
